@@ -79,14 +79,216 @@ docker tag wordpress_nginx bamalik1996/wordpress_nginx:1.0
 docker push bamalik1996/wordpress_nginx:1.0
 ```
 
+# Use Different Docker Container Commands
+
+### List running Docker containers
+
+```bash
+docker ps
+```
+
+CONTAINER ID | IMAGE |  COMMAND | CREATED | STATUS | PORTS | NAMES |
+-----------   ------   -------    ------    ------   -----   -----
+32ed12171f92 | b6a588413b51  | "/bin/sh -c 'service…" |  2 days ago  | Up About an hour  | 127.0.0.1:2124->80/tcp  | some-nginx-03 |
+
+### Stop running Docker containers
+
+```bash
+docker stop CONTAINER ID
+```
+```bash
+docker stop 32ed12171f92 
+```
+
+### Remove stop Docker containers
+
+```bash
+docker rm CONTAINER ID
+```
+```bash
+docker rm 32ed12171f92 
+```
+
+### Inspect Docker containers
+
+```bash
+docker inspect CONTAINER ID
+```
+```bash
+docker inspect 32ed12171f92 
+```
+```json
+[
+    {
+        "Id": "ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501",
+        "Created": "2023-11-02T06:28:22.638830408Z",
+        "Path": "/bin/sh",
+        "Args": [
+            "-c",
+            "service php8.1-fpm start \u0026\u0026 nginx -g 'daemon off;'"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 13503,
+            "ExitCode": 0
+        }.....
+```
+
+### 
+
+
+### Inspect Docker containers
+
+```bash
+docker exec -it [Container ID or Container Name] command 
+```
+
+```bash
+docker exec -it some-nginx-03 tail -f /var/log/nginx/access.log 
+```
+
+### Create a new image from a Docker Container
+
+```bash
+docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+```
+
+```bash
+docker commit  some-nginx-03 wordpress_nginx:v1 
+```
+#### Response
+
+```bash
+sha256:3ffd87c8a0482b5665115803e3979030911af711ce121ad5d12e5c7835b93654
+```
+
+### Command to copy files/folders between the container and the host
+
+```bash
+docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
+``` 
+```bash
+docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
+``` 
+
+```bash
+docker cp some-nginx-02:/etc/nginx/sites-available/default ./nginx/sites-available/default
+``` 
+
+```bash
+docker cp ./nginx/sites-available/default some-nginx-02:/etc/nginx/sites-available/default
+``` 
+
+## Command to view the resource usage of containers
+```bash
+docker stats [Container ID]
+``` 
+
+```bash
+docker stats ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
+```
 
 CONTAINER ID  |    NAME        | CPU %   |  MEM USAGE / LIMIT   | MEM %  |  NET I/O    | BLOCK I/O  |  PIDS |
 -------------   -------------    -------    -------------------   ------   -----------   ---------     -----
 ff8b740a635c  | some-nginx-03  | 0.01%   |  21.1MiB / 7.682GiB  | 0.27%  |   806B / 0B |  0B / 0B   |  13   |
 
 
+## Command to view the running processes inside a container
+```bash
+docker top [Container ID]
+``` 
+
+```bash
+docker top ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
+```
+
 UID          |       PID         |        PPID       |         C          |         STIME        |       TTY        |         TIME           |     CMD                                      |
 ------------- ------------------- ------------------- -------------------- ---------------------- ------------------ ------------------------ ----------------------------------------------
 www-data     |       2858        |        2857       |         0          |         19:38        |       ?          |         00:00:00       |     php-fpm: pool www                        |
 www-data     |       2859        |        2857       |         0          |         19:38        |       ?          |         00:00:00       |     php-fpm: pool www                        |
-root         |       2860        |        2827       |         0          |         19:38        |       ?          |         00:00:00       |     nginx: master process nginx -g daemon off|;
+root         |       2860        |        2827       |         0          |         19:38        |       ?          |         00:00:00       |     nginx: master process nginx -g daemon off|
+
+
+## Command to start a stopped container
+```bash
+docker start [Container ID]
+``` 
+
+```bash
+docker start ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
+```
+
+## Command to pause a running container
+```bash
+docker stop [Container ID]
+``` 
+
+```bash
+docker stop ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
+```
+
+## Command to unpause a paused container
+```bash
+docker stop [Container ID]
+``` 
+
+```bash
+docker stop ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
+```
+
+## Command to unpause a paused container
+```bash
+docker rename CONTAINER NEW_NAME
+``` 
+
+```bash
+docker rename ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501 some-nginx-rename
+```
+
+
+##  Command to wait for a container to exit and then display its exit code
+```bash
+docker wait CONTAINER ID
+``` 
+
+```bash
+docker wait ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
+```
+
+##  Command to display the public-facing port that a container is listening on
+```bash
+docker port CONTAINER ID
+``` 
+
+```bash
+docker port ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
+```
+####  Response
+
+```bash
+80/tcp -> 127.0.0.1:2124
+```
+
+##  Command to update a container's resource limits
+```bash
+docker update [OPTIONS] CONTAINER [CONTAINER...]
+``` 
+
+```bash
+docker update --cpu-shares 512 ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
+```
+
+
+## Command to restart a running container
+```bash
+docker restart [CONTAINER ID]
+``` 
+
+```bash
+docker restart ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
+```
