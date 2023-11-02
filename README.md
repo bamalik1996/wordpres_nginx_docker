@@ -78,3 +78,15 @@ docker tag wordpress_nginx bamalik1996/wordpress_nginx:1.0
 ```bash
 docker push bamalik1996/wordpress_nginx:1.0
 ```
+
+
+CONTAINER ID  |    NAME        | CPU %   |  MEM USAGE / LIMIT   | MEM %  |  NET I/O    | BLOCK I/O  |  PIDS |
+-------------   -------------    -------    -------------------   ------   -----------   ---------     -----
+ff8b740a635c  | some-nginx-03  | 0.01%   |  21.1MiB / 7.682GiB  | 0.27%  |   806B / 0B |  0B / 0B   |  13   |
+
+
+UID          |       PID         |        PPID       |         C          |         STIME        |       TTY        |         TIME           |     CMD                                      |
+------------- ------------------- ------------------- -------------------- ---------------------- ------------------ ------------------------ ----------------------------------------------
+www-data     |       2858        |        2857       |         0          |         19:38        |       ?          |         00:00:00       |     php-fpm: pool www                        |
+www-data     |       2859        |        2857       |         0          |         19:38        |       ?          |         00:00:00       |     php-fpm: pool www                        |
+root         |       2860        |        2827       |         0          |         19:38        |       ?          |         00:00:00       |     nginx: master process nginx -g daemon off|;
