@@ -32,4 +32,8 @@ COPY ./nginx/sites-available/default /etc/nginx/sites-available/default
 # Copy your web content to the NGINX document root
 COPY . /var/www/html
 
+# Define a volume mapping between the "wodpress_volumn" and "/var/www/wp-content/uploads" directories.
+VOLUME ["wodpress_volumn:/var/www/wp-content/uploads"]
+
+# Start the PHP-FPM service for PHP version 8.1 and then launch the Nginx web server in daemon mode.
 CMD service php8.1-fpm start && nginx -g 'daemon off;'
