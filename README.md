@@ -193,9 +193,9 @@ docker stats [Container ID]
 docker stats ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
 ```
 
-CONTAINER ID  |    NAME        | CPU %   |  MEM USAGE / LIMIT   | MEM %  |  NET I/O    | BLOCK I/O  |  PIDS |
--------------   -------------    -------    -------------------   ------   -----------   ---------     -----
-ff8b740a635c  | some-nginx-03  | 0.01%   |  21.1MiB / 7.682GiB  | 0.27%  |   806B / 0B |  0B / 0B   |  13   |
+
+<table><thead><tr><th>CONTAINER ID</th><th>NAME</th><th>CPU %</th><th>MEM USAGE / LIMIT</th><th>MEM %</th><th>NET I/O</th><th>BLOCK I/O</th><th>PIDS</th></tr></thead><tbody><tr><td>ff8b740a635c</td><td>some-nginx-03</td><td>0.01%</td><td>21.1MiB / 7.682GiB</td><td>0.27%</td><td>806B / 0B</td><td>0B / 0B</td><td>13</td></tr></tbody></table>
+
 
 
 ## Command to view the running processes inside a container
@@ -206,14 +206,8 @@ docker top [Container ID]
 ```bash
 docker top ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
 ```
-<table><thead><tr><th>CONTAINER ID</th><th>NAME</th><th>CPU %</th><th>MEM USAGE / LIMIT</th><th>MEM %</th><th>NET I/O</th><th>BLOCK I/O</th><th>PIDS</th></tr></thead><tbody><tr><td>ff8b740a635c</td><td>some-nginx-03</td><td>0.01%</td><td>21.1MiB / 7.682GiB</td><td>0.27%</td><td>806B / 0B</td><td>0B / 0B</td><td>13</td></tr></tbody></table>
 
-| UID          |       PID         |        PPID       |         C          |         STIME        |       TTY        |         TIME           |     CMD                                      |
-| -------------|:------------------:|: ------------------- -------------------- ---------------------- ------------------ ------------------------ ----------------------------------------------
-| www-data     |       2858        |        2857       |         0          |         19:38        |       ?          |         00:00:00       |     php-fpm: pool www                        |
-| www-data     |       2859        |        2857       |         0          |         19:38        |       ?          |         00:00:00       |     php-fpm: pool www                        |
-| root         |       2860        |        2827       |         0          |         19:38        |       ?          |         00:00:00       |     nginx: master process nginx -g daemon off|
-
+<table><thead><tr><th>UID</th><th>PID</th><th>PPID</th><th>C</th><th>STIME</th><th>TTY</th><th>TIME</th><th>CMD</th></tr></thead><tbody><tr><td>www-data</td><td>2858</td><td>2857</td><td>0</td><td>19:38</td><td>?</td><td>00:00:00</td><td>php-fpm: pool www</td></tr><tr><td>www-data</td><td>2859</td><td>2857</td><td>0</td><td>19:38</td><td>?</td><td>00:00:00</td><td>php-fpm: pool www</td></tr><tr><td>root</td><td>2860</td><td>2827</td><td>0</td><td>19:38</td><td>?</td><td>00:00:00</td><td>nginx: master process nginx -g daemon off</td></tr></tbody></table>
 
 ## Command to start a stopped container
 ```bash
