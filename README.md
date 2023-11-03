@@ -206,12 +206,13 @@ docker top [Container ID]
 ```bash
 docker top ff8b740a635c3fbc2b4d31a83388f7c46ae6b40c0604a53ff1f98c914d219501
 ```
+<table><thead><tr><th>CONTAINER ID</th><th>NAME</th><th>CPU %</th><th>MEM USAGE / LIMIT</th><th>MEM %</th><th>NET I/O</th><th>BLOCK I/O</th><th>PIDS</th></tr></thead><tbody><tr><td>ff8b740a635c</td><td>some-nginx-03</td><td>0.01%</td><td>21.1MiB / 7.682GiB</td><td>0.27%</td><td>806B / 0B</td><td>0B / 0B</td><td>13</td></tr></tbody></table>
 
-UID          |       PID         |        PPID       |         C          |         STIME        |       TTY        |         TIME           |     CMD                                      |
-------------- ------------------- ------------------- -------------------- ---------------------- ------------------ ------------------------ ----------------------------------------------
-www-data     |       2858        |        2857       |         0          |         19:38        |       ?          |         00:00:00       |     php-fpm: pool www                        |
-www-data     |       2859        |        2857       |         0          |         19:38        |       ?          |         00:00:00       |     php-fpm: pool www                        |
-root         |       2860        |        2827       |         0          |         19:38        |       ?          |         00:00:00       |     nginx: master process nginx -g daemon off|
+| UID          |       PID         |        PPID       |         C          |         STIME        |       TTY        |         TIME           |     CMD                                      |
+| -------------|:------------------:|: ------------------- -------------------- ---------------------- ------------------ ------------------------ ----------------------------------------------
+| www-data     |       2858        |        2857       |         0          |         19:38        |       ?          |         00:00:00       |     php-fpm: pool www                        |
+| www-data     |       2859        |        2857       |         0          |         19:38        |       ?          |         00:00:00       |     php-fpm: pool www                        |
+| root         |       2860        |        2827       |         0          |         19:38        |       ?          |         00:00:00       |     nginx: master process nginx -g daemon off|
 
 
 ## Command to start a stopped container
