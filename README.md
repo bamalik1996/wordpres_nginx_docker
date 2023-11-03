@@ -79,6 +79,12 @@ docker tag wordpress_nginx bamalik1996/wordpress_nginx:1.0
 docker push bamalik1996/wordpress_nginx:1.0
 ```
 
+### Pulls a Docker image for WordPress with Nginx from 'bamalik1996'.
+```bash
+docker pull bamalik1996/wordpress_nginx
+```
+
+
 # Use Different Docker Container Commands
 
 ### List running Docker containers
